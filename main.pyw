@@ -41,13 +41,6 @@ def get_class_data(url: str, headers, classNumber: int = None) -> requests.Respo
     raise Exception(f'HTTP Request Error, code {res.status_code}, content:\n {res.content}')
 
 
-def scrape_class_data(url: str, query_str: str) -> requests.Response.content:
-    res = requests.post(url, data=query_str)
-    if res.status_code == 200:
-        return res.content
-    raise Exception(f'Request Error, code ${res.status_code}, content:\n ${res.content}')
-
-
 def polling_manager(url: str, head, df_func):
     print("Poll Starting")
     was_active = False
