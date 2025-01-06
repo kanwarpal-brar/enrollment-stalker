@@ -7,8 +7,6 @@ from email.message import EmailMessage
 import json
 import os
 from dotenv import load_dotenv
-
-import pandas
 import requests
 
 load_dotenv()
@@ -48,11 +46,6 @@ def scrape_class_data(url: str, query_str: str) -> requests.Response.content:
     if res.status_code == 200:
         return res.content
     raise Exception(f'Request Error, code ${res.status_code}, content:\n ${res.content}')
-
-
-def check_status(html_str: str, func: Callable[[Any], bool]) -> bool:
-    table = pandas.read_html(html_str)[1]
-    return func(table)
 
 
 def polling_manager(url: str, head, df_func):
